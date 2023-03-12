@@ -1,0 +1,9 @@
+.body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header {
+    height: 4rem;
+    align-items: center;
+    justify-content: center;
+}
