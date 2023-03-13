@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="product-details">
+    <div class="product-details__column">
+        <img class="product-details__small-img" src="{{product.image1.url}}"/>
+        <img class="product-details__small-img" src="{{product.image2.url}}"/>
+        <img class="product-details__small-img" src="{{product.image3.url}}"/>
+        <img class="product-details__small-img" src="{{product.image4.url}}"/>
+    </div>
+    <div class="product-details__column">
+        <img class="product-details__img" src="{{product.image1.url}}" id="product-preview-img"/>
+    </div>
+    <div class="product-details__column">
+        <h3 class="product-details__title">{{product.title}}</h3>
+        <p class="product-details__price">&#8364; {{product.price}}</p>
+        <p class="product-details__description">{{product.description}}</p>
+        <p class="product-details__color">COLOUR: Black</p>
+        <button class="product-details__btn">ADD TO CART</button>
+    </div>
+</section>
+{% endblock content %}

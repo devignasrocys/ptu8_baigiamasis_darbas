@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 {% include 'core/includes/search.html' %}
-{% include 'core/includes/hero.html' %}
 <section class="products-section">
     {% for product in all_products %}
     <a href="{{product.get_absolute_url}}">
