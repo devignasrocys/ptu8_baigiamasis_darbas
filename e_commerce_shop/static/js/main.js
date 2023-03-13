@@ -1,4 +1,3 @@
-
 // MOBILE MENU
 const btn = document.getElementById("menu-btn");
 btn.addEventListener("click", (e) => {

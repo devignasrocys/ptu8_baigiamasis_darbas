@@ -14,12 +14,17 @@ def home(request):
         )
         context = {'all_products': all_products}
         return render(request, 'core/search-page.html', context)
-    print(query)
     return render(request, 'core/home.html', context)
 
 def categories(request):
     all_categories = models.Category.objects.all()
     return {'all_categories': all_categories}
+
+def list_category(request, category_slug=None):
+    category = get_object_or_404(models.Category, slug=category_slug)
+    products = models.Product.objects.filter(category=category)
+    print(products)
+    return render(request, 'core/list-category.html', {'category': category, 'products': products})
 
 def product_info(request, slug):
     product = get_object_or_404(models.Product, slug=slug)
