@@ -14,28 +14,44 @@
     </head>
     <body class="body">
         <header class="header">
-            <navbar class="header__navbar">
-                <a href="{% url 'home-page' %}">
-                <h2 class="header__logo">Clothes Shop</h2>
-                </a>
-                <div class="cell">
-                <label for="category-filter">Filter by</label>
-                <select id="category-filter">
-                    <option value="">Shirts</option>
-                    <option value="">Shoes</option>
-                    <option value="">Jeans</option>
-                </select>
-                </div>
+            <a href="{% url 'home-page' %}">
+                <h2 class="logo">Clothes Shop</h2>
+            </a>
+            <button class="btn" id="menu-btn">
+                <img src="{% static 'media/icons/hamburger.png' %}" />
+            </button>
+            <navbar class="header__navbar display" id="navbar">
+                <nav class="header__nav">
+                    <a href="{% url 'home-page' %}">
+                        <h2 class="nav__logo">Clothes Shop</h2>
+                    </a>
+                    {% for category in all_categories %}
+                        <a class="nav__item" href="">{{category.name | capfirst}}</a>
+                    {% endfor %}
+
+                </nav>
+                <nav class="header__second-nav">
+                    {% if user.is_authenticated %}
+                        <a class="nav__item" href="">My Profile</a>
+                        <a class="nav__item" href="">Log Out</a>
+                        <a class="nav__item cart-icon" href="">
+                            <img class="icon" src="{% static 'media/icons/cart.png' %}" alt="cart-icon"/>
+                        </a>
+                    {% else %}
+                        <a class="nav__item" href="">Login</a>
+                        <a class="nav__item" href="">Register</a>
+                        <a class="nav__item cart-icon" href="">
+                            <img class="icon" src="{% static 'media/icons/cart.png' %}" alt="cart-icon"/>
+                        </a>
+                    {% endif %}
+                </nav>
             </navbar>
         </header>
-        <section class="hero-section">
-            <img src="" alt="" />
-        </section>
-        <section class="main-section">
             {% block content %}
             {% endblock content %}
-        </section>
         <footer class="footer">
         </footer>
+        <script src="{% static 'js/main.js' %}">
+        </script>
     </body>
 </html>

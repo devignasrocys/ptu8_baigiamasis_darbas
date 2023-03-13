@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1> HomePage </h1>
+{% include 'core/includes/hero.html' %}
+<section class="products-section">
+    <article class="product-card">
+        <img class="product-card__img" href="" alt="product image"/>
+        <p clas="product-card__name">Miss Selfridge collared cut</p>
+        <p class="product-card__price">	&#8364; 44.99</p>
+    </article>
+</section>
 {% endblock content %}
