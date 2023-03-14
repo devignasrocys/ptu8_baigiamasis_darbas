@@ -11,6 +11,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="{% static 'css/reset.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     </head>
     <body class="body">
         <header class="header">
@@ -34,32 +35,40 @@
                     {% if user.is_authenticated %}
                         <a class="nav__item" href="">My Profile</a>
                         <a class="nav__item" href="">Log Out</a>
-                        <a class="nav__item cart-icon" href="">
-                            <img class="icon" src="{% static 'media/icons/cart.png' %}" alt="cart-icon"/>
-                        </a>
-                    {% else %}
+                        {% else %}
                         <a class="nav__item" href="">Login</a>
                         <a class="nav__item" href="">Register</a>
-                        <a class="nav__item cart-icon" href="">
-                            <img class="icon" src="{% static 'media/icons/cart.png' %}" alt="cart-icon"/>
-                        </a>
                     {% endif %}
+                        <a class="nav__item cart-icon" href="{% url 'cart-summary' %}">
+                            <img class="icon" src="{% static 'media/icons/cart.png' %}" alt="cart-icon"/>
+                            <div class="cart-qty" id="product-quantity">
+                                {% with qty_amount=cart|length %}
+                                {% if qty_amount > 0 %}
+                                    {{qty_amount}}
+                                {% else %}
+                                    0
+                                {% endif %}
+                                {% endwith %}
+                            </div> 
+                        </a>
                 </nav>
             </navbar>
         </header>
+        <main class="main">
             {% block content %}
             {% endblock content %}
+        </main>
         <footer class="footer">
             <p>&copy; CLOTHES SHOP</p>
             <ul class="footer-list">
                 <li class="footer-list__item">
-                    <a href="">Details</a>
+                    <a href="#">Details</a>
                 </li>
                 <li class="footer-list__item">
-                    <a href="">Privacy & Cookies</a>
+                    <a href="#">Privacy & Cookies</a>
                 </li>
                 <li class="footer-list__item">
-                    <a href="">Ts&Cs</a>
+                    <a href="#">Ts&Cs</a>
                 </li>
             </ul>
         </footer>

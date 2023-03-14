@@ -16,7 +16,44 @@
         <p class="product-details__price">&#8364; {{product.price}}</p>
         <p class="product-details__description">{{product.description}}</p>
         <p class="product-details__color">COLOUR: Black</p>
-        <button class="product-details__btn">ADD TO CART</button>
+        <label>Quantity
+            <select class="product__select" name="quantity" id="quantity">
+                <option class="product__option" value="1">1</option>
+                <option class="product__option" value="2">2</option>
+                <option class="product__option" value="3">3</option>
+                <option class="product__option" value="4">4</option>
+                <option class="product__option" value="5">5</option>
+                <option class="product__option" value="6">6</option>
+                <option class="product__option" value="7">7</option>
+                <option class="product__option" value="8">8</option>
+            </select>
+        </label>
+        <button class="product-details__btn" value="{{product.id}}" id="add-button">ADD TO CART</button>
     </div>
 </section>
+
+<script>
+    $(document).on('click', '#add-button', function(e) {
+        e.preventDefault()
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cart-add" %}',
+            data: {
+                product_id: $('#add-button').val(),
+                product_quantity: $('#quantity option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+
+            success: function(json) {
+                console.log(json)
+                document.getElementById('product-quantity').textContent = json.quantity
+            },
+            error: function(xhr, errmsg, err) {
+                console.log(xhr, errmsg, err)
+            }
+
+        })
+    } )
+</script> 
 {% endblock content %}

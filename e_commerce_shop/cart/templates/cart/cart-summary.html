@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block content %}
+<section class="cart-section">
+    {% for item in cart %}
+    {% with product=item.product %}
+        <div class="product">
+        <img class="product__img" src="{{product.image1.url}}" alt="product image"/>
+        <div class="product__column">
+            <div class="product__row">
+                <p class="product__title">{{product.title}}</p>
+            </div>
+            <div class="product__row">
+                <p>Product</p>
+                <p class="product__price">&#8364; {{product.price}}</p>
+            </div>
+            <div class="product__row">
+                    <label>Qty
+                        <select class="product__select" name="quantity" id="quantity">
+                            <option class="product__option" value="1" selected>{{item.qty}}</option>
+                            <option class="product__option" value="2">2</option>
+                            <option class="product__option" value="3">3</option>
+                            <option class="product__option" value="4">4</option>
+                            <option class="product__option" value="5">5</option>
+                            <option class="product__option" value="6">6</option>
+                            <option class="product__option" value="7">7</option>
+                            <option class="product__option" value="8">8</option>
+                        </select>
+                    </label>
+                    <div class="product__buttons-row">
+                        <button class="btn-blue">Update</button>
+                        <button class="btn-red">Delete</button>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+    {% endwith %}
+    {% endfor %}
+</section>
+{% endblock content %} 
