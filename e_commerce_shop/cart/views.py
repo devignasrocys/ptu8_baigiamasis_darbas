@@ -15,6 +15,7 @@ def cart_add(request):
     if request.POST.get('action') == 'post':
         product_id = int(request.POST.get('product_id'))
         product_quantity = int(request.POST.get('product_quantity'))
+        print(product_id)
         product = get_object_or_404(Product, id=product_id)
         cart.add(product=product, product_qty=product_quantity)
         cart_quantity = cart.__len__()

@@ -37,7 +37,7 @@
                         <a class="nav__item" href="">Log Out</a>
                         {% else %}
                         <a class="nav__item" href="">Login</a>
-                        <a class="nav__item" href="">Register</a>
+                        <a class="nav__item" href="{% url 'register' %}">Register</a>
                     {% endif %}
                         <a class="nav__item cart-icon" href="{% url 'cart-summary' %}">
                             <img class="icon" src="{% static 'media/icons/cart.png' %}" alt="cart-icon"/>
@@ -54,6 +54,13 @@
                 </nav>
             </navbar>
         </header>
+        {% block messages %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="messages messages-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endblock messages %}
         <main class="main">
             {% block content %}
             {% endblock content %}

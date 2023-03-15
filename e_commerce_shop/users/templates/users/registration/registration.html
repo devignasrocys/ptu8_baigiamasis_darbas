@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form class="form" method="post" action="{{ request.path }}">
+    {% csrf_token %}
+    <label for="username">Username</label>
+    <input name="username" type="text" placeholder="Enter your username" />
+
+    <label for="email">Email</label>
+    <input name="email" type="text" placeholder="Enter your email" />
+
+    <label for="password1">Password</label>
+    <input name="password1" type="password"  placeholder="Enter your password" />
+
+    <label for="password2">Password</label>
+    <input name="password2" type="password"  placeholder="Repeat your password" />
+
+    <button class="form__btn" type="submit">Register</button>
+    <p>Already have an account?<a class="form__link" href="">Login</a></p>
+</form>
+{% endblock content %}

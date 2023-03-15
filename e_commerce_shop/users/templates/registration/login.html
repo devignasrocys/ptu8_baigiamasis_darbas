@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form class="form" method="post" action="{% url 'home-page' %}">
+    {% csrf_token %}
+    {{ form }}
+    <button class="form__btn" type="submit">Log in</button>
+</form>
+<p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+{% endblock content %}
