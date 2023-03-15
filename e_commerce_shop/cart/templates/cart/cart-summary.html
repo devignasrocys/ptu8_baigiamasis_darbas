@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
 {% load static i18n %}
 
 {% block content %}
 <section class="cart-section">
+    {% if cart %}
     {% for item in cart %}
     {% with product=item.product %}
         <div class="product">
@@ -13,12 +15,13 @@
             </div>
             <div class="product__row">
                 <p>Product</p>
-                <p class="product__price">&#8364; {{product.price}}</p>
+                <p class="product__price">&#8364; {{product.price | mul:item.qty }}</p>
             </div>
             <div class="product__row">
                     <label>Qty
-                        <select class="product__select" name="quantity" id="quantity">
-                            <option class="product__option" value="1" selected>{{item.qty}}</option>
+                        <select class="product__select" name="quantity" id="quantity{{product.id}}">
+                            <option class="product__option" selected>{{item.qty}}</option>
+                            <option class="product__option" value="1">1</option>
                             <option class="product__option" value="2">2</option>
                             <option class="product__option" value="3">3</option>
                             <option class="product__option" value="4">4</option>
@@ -29,14 +32,68 @@
                         </select>
                     </label>
                     <div class="product__buttons-row">
-                        <button class="btn-blue">Update</button>
-                        <button class="btn-red">Delete</button>
+                        <button class="btn-blue update-button" data-index="{{product.id}}" >Update</button>
+                        <button class="btn-red delete-button" data-index="{{product.id}}">Delete</button>
                     </div>
             </div>
         </div>
-
     </div>
     {% endwith %}
     {% endfor %}
+    {% else %}
+        <h1>Your cart is empty</h1>
+    {% endif %}
+    <div class="cart-section__row">
+        <p class="cart-section__total-price">Total Price: <b>&#8364; {{cart.get_total}}</b></p>
+    </div>
 </section>
+<script>
+    // Delete button
+    $(document).on('click', '.delete-button', function(e) {
+        e.preventDefault()
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cart-delete" %}',
+            data: {
+                product_id: $(this).data('index'),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+
+            success: function(json) {
+                window.location.reload()
+                $('#product-quantity').textContent = json.quantity
+                // document.getElementById('product-quantity').textContent = json.quantity
+            },
+            error: function(xhr, errmsg, err) {
+                console.log(xhr, errmsg, err)
+            }
+
+        })
+    })
+    // Update button
+    $(document).on('click', '.update-button', function(e) {
+        e.preventDefault()
+        let product_id = $(this).data('index');
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cart-update" %}',
+            data: {
+                product_id: product_id,
+                product_quantity: $('#quantity' + product_id + ' option:selected').text(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+
+            success: function(json) {
+                window.location.reload()
+                $('#product-quantity').textContent = json.quantity
+            },
+            error: function(xhr, errmsg, err) {
+                console.log(xhr, errmsg, err)
+            }
+
+        })
+    } )
+</script>
 {% endblock content %} 
