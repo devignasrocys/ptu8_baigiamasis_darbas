@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render
 from .cart import Cart
 from core.models import Product
@@ -11,24 +12,24 @@ def cart_summary(request):
 
 def cart_add(request):
     cart = Cart(request)
-
-    if request.POST.get('action') == 'post':
-        product_id = int(request.POST.get('product_id'))
-        product_quantity = int(request.POST.get('product_quantity'))
-        print(product_id)
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        product_id = int(data['product_id'])
+        product_quantity = int(data['product_quantity'])
         product = get_object_or_404(Product, id=product_id)
         cart.add(product=product, product_qty=product_quantity)
         cart_quantity = cart.__len__()
-        response = JsonResponse({'quantity': cart_quantity})
-        print(response)
+        response = HttpResponse(cart_quantity)
         return response
+    
   
 
 def cart_delete(request):
     cart = Cart(request)
 
-    if request.POST.get('action') == 'post':
-        product_id = int(request.POST.get('product_id'))
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        product_id = int(data['product_id'])
         cart.delete(product_id=product_id,)
         cart_quantity = cart.__len__()
         cart_total = cart.get_total()
@@ -40,9 +41,11 @@ def cart_delete(request):
 def cart_update(request):
     cart = Cart(request)
 
-    if request.POST.get('action') == 'post':
-        product_id = int(request.POST.get('product_id'))
-        product_quantity = request.POST.get('product_quantity')
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data)
+        product_id = int(data['product_id'])
+        product_quantity = int(data['product_quantity'])
         cart.update(product_id=product_id,product_quantity=product_quantity)
         cart_quantity = cart.__len__()
         response = JsonResponse({'quantity': cart_quantity,})

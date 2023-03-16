@@ -51,49 +51,48 @@
     </div>
 </section>
 <script>
-    // Delete button
-    $(document).on('click', '.delete-button', function(e) {
-        e.preventDefault()
-        $.ajax({
-            type: 'POST',
-            url: '{% url "cart-delete" %}',
-            data: {
-                product_id: $(this).data('index'),
-                csrfmiddlewaretoken: '{{ csrf_token }}',
+    
+    function delete_prodcut() {
+        fetch('{% url "cart-delete" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                product_id: document.querySelector('.delete-button').dataset.index,
                 action: 'post'
-            },
-            success: function(json) {
-                window.location.reload()
-                $('#product-quantity').textContent = json.quantity
-                // document.getElementById('product-quantity').textContent = json.quantity
-            },
-            error: function(xhr, errmsg, err) {
-                console.log(xhr, errmsg, err)
-            }
+            })
+        }).then(response => response.json()).then(data => {
+            console.log(data)
+            window.location.reload()
         })
+    }
+    let delete_buttons = document.querySelectorAll('.delete-button')
+    delete_buttons.forEach(button => {
+        button.addEventListener('click', delete_prodcut)
     })
-    // Update button
-    $(document).on('click', '.update-button', function(e) {
-        e.preventDefault()
-        let product_id = $(this).data('index');
-        $.ajax({
-            type: 'POST',
-            url: '{% url "cart-update" %}',
-            data: {
-                product_id: product_id,
-                product_quantity: $('#quantity' + product_id + ' option:selected').text(),
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                action: 'post'
-            },
-            success: function(json) {
-                window.location.reload()
-                $('#product-quantity').textContent = json.quantity
-            },
-            error: function(xhr, errmsg, err) {
-                console.log(xhr, errmsg, err)
-            }
 
+    function update_product() {
+        fetch('{% url "cart-update" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                product_id: document.querySelector('.update-button').dataset.index,
+                product_quantity: document.querySelector('.product__select').value,
+                action: 'post'
+            })
+        }).then(response => response.json()).then(data => {
+            console.log(data)
+            window.location.reload()
         })
-    } )
+    }
+    let update_buttons = document.querySelectorAll('.update-button')
+    update_buttons.forEach(button => {
+        button.addEventListener('click', update_product)
+    })
 </script>
 {% endblock content %} 

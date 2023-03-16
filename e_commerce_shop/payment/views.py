@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from . import models
+from cart.cart import Cart
 
 # Create your views here.
 def checkout(request):
@@ -14,4 +15,12 @@ def checkout(request):
         return render(request, 'payment/checkout.html')
     
 def complete_order(request):
-    pass
+    cart = Cart
+    if request == 'POST':
+        pass
+
+def payment_success(request):
+    return render(request, 'payment/payment-success.html')
+
+def payment_failed(request):
+    return render(request, 'payment/payment-failed.html')

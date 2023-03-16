@@ -33,27 +33,22 @@
 </section>
 
 <script>
-    $(document).on('click', '#add-button', function(e) {
-        e.preventDefault()
-        $.ajax({
-            type: 'POST',
-            url: '{% url "cart-add" %}',
-            data: {
-                product_id: $('#add-button').val(),
-                product_quantity: $('#quantity option:selected').text(),
-                csrfmiddlewaretoken: '{{ csrf_token }}',
+    function addToCart() {
+        fetch('{% url "cart-add" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                product_id: document.getElementById('add-button').value,
+                product_quantity: document.getElementById('quantity').value,
                 action: 'post'
-            },
-
-            success: function(json) {
-                console.log(json)
-                document.getElementById('product-quantity').textContent = json.quantity
-            },
-            error: function(xhr, errmsg, err) {
-                console.log(xhr, errmsg, err)
-            }
-
+            })
         })
-    }) 
+        .then(response => response.json())
+        .then(data =>  document.getElementById('product-quantity').textContent = data)
+    }
+    document.getElementById('add-button').addEventListener('click', addToCart)
 </script> 
 {% endblock content %}
