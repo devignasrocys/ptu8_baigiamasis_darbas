@@ -90,7 +90,7 @@ def delete_account(request):
     print(user)
     if request.method == 'POST':
         user.delete()
-        messages.error(request, 'Account deleted')
+        messages.info(request, 'Account deleted')
         return redirect('home-page')
     return render(request, 'users/delete-account.html')
 
