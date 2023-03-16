@@ -2,6 +2,10 @@
 
 {% block content %}
 <section class="dashboard">
-
+<form class="form" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" class="dashboard__btn">Submit Form</button>
+</form>
 </section>
 {% endblock content %}

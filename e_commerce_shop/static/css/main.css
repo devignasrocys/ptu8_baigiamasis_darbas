@@ -325,6 +325,17 @@
     align-self: flex-end;
 }
 
+.cart-section__btn {
+    background-color: #83cd88;
+    padding: .5rem 1rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.cart-section__btn:hover {
+    background-color: #6ca270;
+}
+
 /* FORMS SECTION */
 .form {
     margin-top: 5rem;

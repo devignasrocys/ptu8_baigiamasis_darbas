@@ -5,6 +5,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from . import forms
+from payment.forms import ShippingForm
+from payment.models import ShippingAddress
 
 User = get_user_model()
 
@@ -66,7 +68,21 @@ def profile_management(request):
 
 @login_required
 def manage_shipping(request):
-    return render(request, 'users/manage-shipping.html')
+    try:
+        shipping_form = ShippingAddress.objects.get(user=request.user.id)
+    except ShippingAddress.DoesNotExist:
+        shipping_form = None
+    form = ShippingForm(instance=shipping_form)
+    if request.method == 'POST':
+        form = ShippingForm(request.POST, instance=shipping_form)
+        if form.is_valid():
+            shipping_user = form.save()
+            shipping_user.user = request.user
+            shipping_user.save()
+            messages.info(request, 'Shipping form was added successfully!')
+            return redirect('dashboard')
+    context = {'form': form}
+    return render(request, 'users/manage-shipping.html', context=context)
 
 @login_required
 def delete_account(request):
