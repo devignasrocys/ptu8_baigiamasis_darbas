@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="dashboard">
+<form class="form" method='POST' autocomplete="off">
+    {% csrf_token %}
+    <h3>Are you sure wanna delete account?</h3>
+    <button type="submit" class="dashboard__btn">Delete Account</button>
+</form>
+</section>
+{% endblock content %}

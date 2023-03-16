@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="dashboard">
+    <article class="dashboard__article">
+        <h1>Profile management</h1>
+        <p>Manage your account effectively.</p>
+    </article>
+    <article class="dashboard__article">
+        <h1>Update your account</h1>
+        <p>Feel free to make changes to your account.</p>
+        <form class="form" method="POST">
+            {% csrf_token %}
+            {{user_form.username}}
+            {{user_form.email}}
+            {{user_form.first_name}}
+            {{user_form.last_name}}
+            <button type="submit" class="dashboard__btn">Update your account</button>
+        </form>
+    </article>
+    <article class="dashboard__article">
+        <h1>Delete your account</h1>
+        <p>Proceed if you wish to delete your account.</p>
+        <a class="dashboard__btn" href="{% url 'delete-account' %}">Delete your account</a>
+    </article>
+</section>
+{% endblock content %}

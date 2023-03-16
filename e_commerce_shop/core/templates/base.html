@@ -33,10 +33,10 @@
                 </nav>
                 <nav class="header__second-nav">
                     {% if user.is_authenticated %}
-                        <a class="nav__item" href="">My Profile</a>
-                        <a class="nav__item" href="">Log Out</a>
+                        <a class="nav__item" href="{% url 'dashboard' %}">My Profile</a>
+                        <a class="nav__item" href="{% url 'logout' %}">Log Out</a>
                         {% else %}
-                        <a class="nav__item" href="">Login</a>
+                        <a class="nav__item" href="{% url 'login' %}">Login</a>
                         <a class="nav__item" href="{% url 'register' %}">Register</a>
                     {% endif %}
                         <a class="nav__item cart-icon" href="{% url 'cart-summary' %}">

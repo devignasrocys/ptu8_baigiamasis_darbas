@@ -383,6 +383,44 @@
     background-color: rgb(240, 142, 142);
 }
 
+/* DASHBOARD SECTION */
+.dashboard {
+}
+
+.dashboard__article {
+    margin: 1rem 0;
+}
+
+.dashboard__article h1 {
+    margin: .5rem 0;
+}
+
+.dashboard__article p {
+    margin: .5rem 0;
+}
+
+.dashboard__article ul {
+    margin-left: 1.5rem;
+}
+
+.dashboard__article li {
+    list-style: disc;
+    margin: .5rem 0;
+}
+
+.dashboard__article .form {
+    margin-top: 0;
+}
+
+.dashboard__btn {
+    padding: .2rem .5rem;
+    background-color: #3b5276;
+    color: #fff;
+    font-weight: 700;
+    margin: .5rem 0;
+    cursor: pointer;
+}
+
 /* FOOTER SECTION */
 .footer {
     width: 100%;

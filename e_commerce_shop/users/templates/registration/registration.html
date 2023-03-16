@@ -3,6 +3,12 @@
 {% block content %}
 <form class="form" method="post" action="{{ request.path }}">
     {% csrf_token %}
+    <label for="first-name">First name</label>
+    <input name="first-name" type="text" placeholder="Enter your name" />
+
+    <label for="last-name">Last name</label>
+    <input name="last-name" type="text" placeholder="Enter your last name" />
+
     <label for="username">Username</label>
     <input name="username" type="text" placeholder="Enter your username" />
 

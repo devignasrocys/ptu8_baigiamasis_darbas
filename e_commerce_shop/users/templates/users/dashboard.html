@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="dashboard">
+    <article class="dashboard__article">
+        <h1>Welcome, {{user}} </h1>
+        <p>This is your dashboard where you can perform any of the following:</p>
+        <ul>
+            <li>Track your orders</li>
+            <li>Manage your account</li>
+        </ul>
+    </article>
+    <article class="dashboard__article">
+        <h1>Track your orders </h1>
+        <p>Track all of your orders here..</p>
+        <a class="dashboard__btn" href="{% url 'my-orders' %}">My orders</a>
+    </article>
+    <article class="dashboard__article">
+        <h1> Manage your account </h1>
+        <p>Update or delete your account</p>
+        <a class="dashboard__btn" href="{% url 'profile-management' %}">Profile management</a>
+    </article>
+    <article class="dashboard__article">
+        <h1>Manage shipping </h1>
+        <p>Enter in a shipping address</p>
+        <a class="dashboard__btn" href="{% url 'manage-shipping' %}">Manage shipping</a>
+    </article>
+</section>
+{% endblock content %}

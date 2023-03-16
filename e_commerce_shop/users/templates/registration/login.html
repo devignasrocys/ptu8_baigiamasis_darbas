@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form class="form" method="post" action="{% url 'home-page' %}">
+<form class="form" method="post" action="{% url 'login' %}?next={% url 'dashboard' %}">
     {% csrf_token %}
     {{ form }}
     <button class="form__btn" type="submit">Log in</button>
