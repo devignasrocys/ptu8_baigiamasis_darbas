@@ -402,11 +402,7 @@
     margin: 1rem 0;
 }
 
-.dashboard__article h1 {
-    margin: .5rem 0;
-}
-
-.dashboard__article p {
+.dashboard__article h1,p {
     margin: .5rem 0;
 }
 
@@ -428,8 +424,86 @@
     background-color: #3b5276;
     color: #fff;
     font-weight: 700;
-    margin: .5rem 0;
+    margin: 1rem 0;
     cursor: pointer;
+}
+
+/* ORDERS LIST AND ORDER DETAILS SECTION */
+.orders-list {
+    margin: 1rem 0;
+}
+
+.orders-list__item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #cacaca;
+}
+
+.orders-list__sub-item {
+    margin: 0 .5rem;
+    width: 12rem;
+}
+
+.orders-list__item .orders-list__sub-item:first-child {
+    width: 5rem
+}
+
+.orders-list__item a:last-child {
+    width: 7rem;
+}
+
+.orders-list__item .btn-view-order {
+    padding: .5rem 0;
+    background-color: #3b5276;
+    font-weight: 700;
+    color: #fff;
+    text-align: center;
+}
+
+.order-details {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.order-details .column {
+    margin: 0 1rem;
+}
+
+.order-details .column:last-child {
+    border: 1px solid #cacaca;
+    padding: 1rem;
+}
+
+.order-details .column:last-child p {
+    border: 1px solid #cacaca;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.order-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #cacaca;
+    margin: 1rem 0;
+    width: 20rem;
+    height: 10rem;
+}
+
+.order-card div {
+    margin: 0 .5rem;
+}
+
+.order-card p {
+    margin: .2rem 0;
+}
+
+.order-card__img {
+    width: 8rem;
 }
 
 /* FOOTER SECTION */
@@ -445,9 +519,14 @@
 .footer-list {
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 .footer-list__item {
+    margin: 0 .5rem;
+}
+
+.footer-list__item  {
     margin: 0 .5rem;
 }
 
@@ -535,6 +614,22 @@
 
     .product-details__column:nth-child(3) {
         order: 3;
+    }
+
+    .orders-list-article {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .orders-list__item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .orders-list__sub-item {
+        margin: .5rem 0;
     }
 
   }

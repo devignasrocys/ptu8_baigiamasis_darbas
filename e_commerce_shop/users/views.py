@@ -57,6 +57,16 @@ def track_orders(request):
     return render(request, 'users/my-orders.html', {'all_orders': all_orders})
 
 @login_required
+def order_details(request,pk):
+    order = Order.objects.get(id=pk)
+    order_items = OrderItem.objects.filter(order=order)
+    order_shipping = ShippingAddress.objects.get(id=order.shipping_address.id)
+    return render(request, 'users/order-details.html', {
+        'order': order, 
+        'order_items': order_items, 
+        'shipping_address': order_shipping} )
+
+@login_required
 def profile_management(request):
     user_form = forms.UserUpdateForm(instance=request.user)
     if request.method == 'POST':

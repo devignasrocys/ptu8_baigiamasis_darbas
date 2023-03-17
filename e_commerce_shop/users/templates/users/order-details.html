@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="dashboard">
+    <article class="dashboard__article order-details">
+        <div class="column">
+            <h1>Order detail</h1>
+            {% for order_item in order_items %}
+            <div class="order-card">
+                <div>
+                    <img class="order-card__img" src="{{order_item.product.image1.url}}" alt="{{order_item.product.name}}"/>
+                </div>
+                <div>
+                    <p>{{order_item.product.title}}</p>
+                    <p>Quantity: {{order_item.quantity}}</p> 
+                    <p>Price:	&#8364; <b>{{order_item.product.price}}</b></p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="column">
+            <h1>Shipping address</h1>
+            <p>
+                <b>Delivered To: </b>
+                {{shipping_address.full_name}}
+            </p>
+            <p>
+                <b>Address: </b>
+                {{shipping_address.address1}}
+            </p>
+            <p>
+                <b>City: </b>
+                {{shipping_address.address2}}
+            </p>
+            <p>
+                <b>State: </b>
+                {{shipping_address.state}}
+            </p>
+            <p>
+                <b>Zip code:</b>
+                {{shipping_address.zipcode}}
+            </p>
+        </div>
+    </article>
+</section>
+{% endblock content %}

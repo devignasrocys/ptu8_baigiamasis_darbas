@@ -12,6 +12,7 @@ class ShippingAddress(models.Model):
     state = models.CharField(max_length=255)
     zipcode = models.CharField(max_length=50)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="shipping_address", null=True, blank=True)
+    
     class Meta:
         verbose_name_plural = 'Shipping Address'
 
@@ -35,7 +36,7 @@ class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
     quantity = models.PositiveBigIntegerField(default=1)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order_items')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order_items', null=True, blank=True)
 
     def __str__(self) -> str:
         return f'Order item id: {self.id}'

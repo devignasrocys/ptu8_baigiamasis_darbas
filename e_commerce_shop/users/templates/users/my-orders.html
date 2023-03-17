@@ -1,14 +1,18 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <section class="dashboard">
-    <article class="dashboard__article">
+    <article class="dashboard__article orders-list-article">
         <h1>My orders</h1>
         <p>View all of your orders</p>
         {% if all_orders %}
-            <ul>
+            <ul class="orders-list">
             {% for order in all_orders %}
-                <li>{{order}}</li>
+                <li class="orders-list__item">
+                    <a class="orders-list__sub-item" href="{% url 'order-details' order.pk %}">Order #{{ order.pk }}</a>
+                    <p class="orders-list__sub-item">Order date: <b>{{order.date_ordered|date:"M d, Y"}}</b></p>
+                    <p class="orders-list__sub-item">Total amount: <b>&#8364; {{order.amount_paid}}</b></p>
+                    <a class="orders-list__sub-item btn-view-order" href="{% url 'order-details' order.pk %}">View order</a>
+                </li>
             {% endfor  %}
             </ul>
         {% else %}

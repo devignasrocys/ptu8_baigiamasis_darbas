@@ -21,16 +21,34 @@ def complete_order(request):
     order_success = False
     if request.method == 'POST':
         data = json.loads(request.body)
-        shipping_address = models.ShippingAddress.objects.get(user=request.user.id)
-        order = models.Order.objects.create(
+        if request.user.is_authenticated:
+            shipping_address = models.ShippingAddress.objects.get(user=request.user.id)
+            order = models.Order.objects.create(
             full_name=data['name'],
             email=data['email'],
             amount_paid=cart.get_total(),
             user=request.user, 
             shipping_address=shipping_address)
-        for item in cart:
-            models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty'], user=request.user) 
-        cart.clear()
+            for item in cart:
+                models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty'], user=request.user) 
+            cart.clear()
+        else:
+            shipping_address = models.ShippingAddress.objects.create(
+                full_name=data['name'],
+                email=data['email'],
+                address1=data['address1'],
+                address2=data['address2'],
+                state=data['state'],
+                zipcode=data['zipcode']
+            )
+            order = models.Order.objects.create(
+            full_name=data['name'],
+            email=data['email'],
+            amount_paid=cart.get_total(),
+            shipping_address=shipping_address)
+            for item in cart:
+                models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty']) 
+            cart.clear()
         order_success = True       
         response = JsonResponse({'order_success': order_success,})
         return response
