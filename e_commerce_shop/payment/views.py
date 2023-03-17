@@ -1,6 +1,8 @@
+import json
 from django.shortcuts import render
 from . import models
 from cart.cart import Cart
+from django.http import JsonResponse
 
 # Create your views here.
 def checkout(request):
@@ -15,9 +17,23 @@ def checkout(request):
         return render(request, 'payment/checkout.html')
     
 def complete_order(request):
-    cart = Cart
-    if request == 'POST':
-        pass
+    cart = Cart(request)
+    order_success = False
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        shipping_address = models.ShippingAddress.objects.get(user=request.user.id)
+        order = models.Order.objects.create(
+            full_name=data['name'],
+            email=data['email'],
+            amount_paid=cart.get_total(),
+            user=request.user, 
+            shipping_address=shipping_address)
+        for item in cart:
+            models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty'], user=request.user) 
+        cart.clear()
+        order_success = True       
+        response = JsonResponse({'order_success': order_success,})
+        return response
 
 def payment_success(request):
     return render(request, 'payment/payment-success.html')

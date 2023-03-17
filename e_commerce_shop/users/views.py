@@ -7,6 +7,8 @@ from django.urls import reverse_lazy
 from . import forms
 from payment.forms import ShippingForm
 from payment.models import ShippingAddress
+from payment.models import Order
+from payment.models import OrderItem
 
 User = get_user_model()
 
@@ -51,7 +53,8 @@ def dashboard(request):
 
 @login_required
 def track_orders(request):
-    return render(request, 'users/my-orders.html')
+    all_orders = Order.objects.filter(user=request.user.id)
+    return render(request, 'users/my-orders.html', {'all_orders': all_orders})
 
 @login_required
 def profile_management(request):

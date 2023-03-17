@@ -8,10 +8,12 @@ from django.http import JsonResponse, HttpResponse
 # Create your views here.
 def cart_summary(request):
     cart = Cart(request)
+    
     return render(request, 'cart/cart-summary.html', {'cart': cart})
 
 def cart_add(request):
     cart = Cart(request)
+
     if request.method == 'POST':
         data = json.loads(request.body)
         product_id = int(data['product_id'])
@@ -19,11 +21,9 @@ def cart_add(request):
         product = get_object_or_404(Product, id=product_id)
         cart.add(product=product, product_qty=product_quantity)
         cart_quantity = cart.__len__()
-        response = HttpResponse(cart_quantity)
+        response = JsonResponse({'quantity': cart_quantity,})
         return response
     
-  
-
 def cart_delete(request):
     cart = Cart(request)
 

@@ -20,11 +20,37 @@
     <label for="zipcode"><label>
     <input id="zipcode" type="text" name="zipcode" placeholder="Zip code" value="{{shipping.zipcode}}" />
     
-    <button type="submit">Continue</button>
-</form>
 
+    <button id="checkout-btn" type="submit">Continue</button>
+</form>
 <script>
-    
+    function checkout(e) {
+        e.preventDefault()
+        fetch('{% url "complete-order" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                name: document.getElementById('full-name').value,
+                email: document.getElementById('email').value,
+                address1: document.getElementById('address1').value,
+                address2: document.getElementById('address2').value,
+                state: document.getElementById('state').value,
+                zipcode: document.getElementById('zipcode').value,
+                action: 'post'
+            })
+        })
+        .then(response => response.json())
+        .then(data =>  {
+            console.log(data)
+            window.location.replace("{% url 'payment-success' %}");
+        }).catch(error => {
+            window.location.replace("{% url 'payment-failed' %}");
+        })
+    }
+    document.getElementById('checkout-btn').addEventListener('click', checkout)
 </script>
 
 {% endblock content %}

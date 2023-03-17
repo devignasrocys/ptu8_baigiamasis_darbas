@@ -40,6 +40,10 @@ class Cart():
             sum += Decimal(item['price']) * item['qty']
         return sum
     
+    def clear(self):
+        del self.session['session_key']
+        self.session.modified = True
+    
     def __len__(self):
         print(self.cart.values())
         sum = 0

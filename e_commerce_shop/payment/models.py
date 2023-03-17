@@ -15,6 +15,9 @@ class ShippingAddress(models.Model):
     class Meta:
         verbose_name_plural = 'Shipping Address'
 
+    def __str__(self) -> str:
+        return self.address1
+
 
 class Order(models.Model):
     full_name = models.CharField(max_length=255)

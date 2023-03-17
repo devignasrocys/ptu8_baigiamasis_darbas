@@ -5,9 +5,9 @@
     <article class="dashboard__article">
         <h1>My orders</h1>
         <p>View all of your orders</p>
-        {% if orders %}
+        {% if all_orders %}
             <ul>
-            {% for order in orders %}
+            {% for order in all_orders %}
                 <li>{{order}}</li>
             {% endfor  %}
             </ul>

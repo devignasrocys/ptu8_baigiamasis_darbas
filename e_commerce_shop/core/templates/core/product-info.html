@@ -47,7 +47,10 @@
             })
         })
         .then(response => response.json())
-        .then(data =>  document.getElementById('product-quantity').textContent = data)
+        .then(data =>  {
+            console.log(data)
+            document.getElementById('product-quantity').textContent = data.quantity
+        })
     }
     document.getElementById('add-button').addEventListener('click', addToCart)
 </script> 

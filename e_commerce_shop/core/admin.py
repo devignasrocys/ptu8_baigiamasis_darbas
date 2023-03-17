@@ -9,6 +9,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(models.Product)
 class ProductAdmin(admin.ModelAdmin):
+    list_display = ['id','title', 'brand', 'price',]
     prepopulated_fields = {'slug': ('title',)}
 
 # admin.site.register(models.Category)
