@@ -27,9 +27,15 @@ class Order(models.Model):
     date_ordered = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='orders')
 
+    def __str__(self) -> str:
+        return f'Order id: {self.id}'
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='order_items')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='order_items')
     quantity = models.PositiveBigIntegerField(default=1)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='order_items')
+
+    def __str__(self) -> str:
+        return f'Order item id: {self.id}'

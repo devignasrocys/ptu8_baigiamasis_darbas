@@ -12,5 +12,7 @@ class ShippingAddressAdmin(admin.ModelAdmin):
 class OrderAdmin(admin.ModelAdmin):
     list_display = ['full_name', 'email', 'shipping_address', 'amount_paid', 'date_ordered', 'user',]
 
-
+@admin.register(models.OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ['order_id', 'product', 'quantity', 'user',]
 
