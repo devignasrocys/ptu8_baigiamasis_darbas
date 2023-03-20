@@ -3,6 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from . import models
 
+
 # Create your views here.
 def home(request):
     all_products = models.Product.objects.all()
@@ -30,4 +31,3 @@ def product_info(request, slug):
     product = get_object_or_404(models.Product, slug=slug)
     context = {'product': product}
     return render(request, 'core/product-info.html', context)
-

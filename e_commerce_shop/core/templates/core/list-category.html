@@ -6,7 +6,7 @@
     {% for product in products %}
     <a href="{{product.get_absolute_url}}">
         <article class="product-card">
-            <img class="product-card__img" src="{{product.image1.url}}" alt="product image"/>
+            <img class="product-card__img" src="{{product.image2.url}}" alt="product image"/>
             <p clas="product-card__name">{{ product.title | capfirst }}</p>
             <p class="product-card__price">	&#8364; {{ product.price }}</p>
         </article>
