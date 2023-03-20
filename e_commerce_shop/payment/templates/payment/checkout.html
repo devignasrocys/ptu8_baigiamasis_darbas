@@ -20,37 +20,59 @@
     <label for="zipcode"><label>
     <input id="zipcode" type="text" name="zipcode" placeholder="Zip code" value="{{shipping.zipcode}}" />
     
-
-    <button id="checkout-btn" type="submit">Continue</button>
+    <div id="paypal-button-container"></div>
 </form>
+<script src="https://www.paypal.com/sdk/js?client-id=AdYeD5IrJWyLSQifcyJUU9_EBKTi5LmCTRmsKQfFaysd1EN3jl2zf-CtGng8ys9tVlmJXYszis2sfrit"> </script>
 <script>
-    function checkout(e) {
-        e.preventDefault()
-        fetch('{% url "complete-order" %}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': '{{ csrf_token }}'
+    let total_price = '{{cart.get_total}}'
+    paypal.Buttons(
+        {
+            style: {
+                color: 'gold',
+                shape: 'pill',
+                label: 'pay',
+                height: 40
             },
-            body: JSON.stringify({
-                name: document.getElementById('full-name').value,
-                email: document.getElementById('email').value,
-                address1: document.getElementById('address1').value,
-                address2: document.getElementById('address2').value,
-                state: document.getElementById('state').value,
-                zipcode: document.getElementById('zipcode').value,
-                action: 'post'
-            })
-        })
-        .then(response => response.json())
-        .then(data =>  {
-            console.log(data)
-            window.location.replace("{% url 'payment-success' %}");
-        }).catch(error => {
-            window.location.replace("{% url 'payment-failed' %}");
-        })
-    }
-    document.getElementById('checkout-btn').addEventListener('click', checkout)
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: total_price
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                function checkout() {
+                    
+                    fetch('{% url "complete-order" %}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        body: JSON.stringify({
+                            name: document.getElementById('full-name').value,
+                            email: document.getElementById('email').value,
+                            address1: document.getElementById('address1').value,
+                            address2: document.getElementById('address2').value,
+                            state: document.getElementById('state').value,
+                            zipcode: document.getElementById('zipcode').value,
+                            action: 'post'
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data =>  {
+                        console.log(data)
+                        window.location.replace("{% url 'payment-success' %}");
+                    }).catch(error => {
+                        window.location.replace("{% url 'payment-failed' %}");
+                    })
+                }
+                return actions.order.capture().then(checkout);
+            }
+        }
+    ).render('#paypal-button-container'); 
 </script>
 
 {% endblock content %}
