@@ -132,34 +132,29 @@
 
 .carousele__slide {
     width: 100%;
+    
 }
 
-.carousele__slide:nth-child(1) .slide__img {
+.slide__img {
     display:block;
-    height: 25rem;
-    background-color: red;
+    width: 100%;
+    height: 50rem;
+    margin: 0 auto;
+    
 }
-.carousele__slide:nth-child(2) .slide__img {
-    display:block;
-    height: 25rem;
-    background-color: orange;
-}
-.carousele__slide:nth-child(3) .slide__img {
-    display:block;
-    height: 25rem;
-    background-color: yellow;
-}
+
 
 .carousele__slide h1 {
     position: absolute;
-    top: 25%;
+    top: 60%;
     left: 50%;
+    color: #fff;
     transform: translate(-50%, -50%);
 }
 
 .carousele__slide a {
     position: absolute;
-    top: 40%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
 }

@@ -52,7 +52,7 @@
 </section>
 <script>
     
-    function delete_prodcut() {
+    function delete_prodcut(e) {
         fetch('{% url "cart-delete" %}', {
             method: 'POST',
             headers: {
@@ -60,7 +60,7 @@
                 'X-CSRFToken': '{{ csrf_token }}'
             },
             body: JSON.stringify({
-                product_id: document.querySelector('.delete-button').dataset.index,
+                product_id: e.target.dataset.index,
                 action: 'post'
             })
         }).then(response => response.json()).then(data => {
@@ -70,10 +70,13 @@
     }
     let delete_buttons = document.querySelectorAll('.delete-button')
     delete_buttons.forEach(button => {
-        button.addEventListener('click', delete_prodcut)
+        button.addEventListener('click', (e) => {
+            delete_prodcut(e)
+        })
     })
 
-    function update_product() {
+    function update_product(e) {
+        console.log(e.target.parentNode.parentNode.querySelector('.product__select').value)
         fetch('{% url "cart-update" %}', {
             method: 'POST',
             headers: {
@@ -81,8 +84,8 @@
                 'X-CSRFToken': '{{ csrf_token }}'
             },
             body: JSON.stringify({
-                product_id: document.querySelector('.update-button').dataset.index,
-                product_quantity: document.querySelector('.product__select').value,
+                product_id: e.target.dataset.index,
+                product_quantity: e.target.parentNode.parentNode.querySelector('.product__select').value,
                 action: 'post'
             })
         }).then(response => response.json()).then(data => {
@@ -92,7 +95,9 @@
     }
     let update_buttons = document.querySelectorAll('.update-button')
     update_buttons.forEach(button => {
-        button.addEventListener('click', update_product)
+        button.addEventListener('click', (e) => {
+            update_product(e)
+        })
     })
 </script>
 {% endblock content %} 
