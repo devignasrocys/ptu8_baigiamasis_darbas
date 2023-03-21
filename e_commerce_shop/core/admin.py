@@ -14,7 +14,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 @admin.register(models.ProductReview)
-class WishlistAdmin(admin.ModelAdmin):
+class ProductReviewAdmin(admin.ModelAdmin):
     list_display = ['id','user', 'product', 'date_added',]
 
 # admin.site.register(models.Category)
