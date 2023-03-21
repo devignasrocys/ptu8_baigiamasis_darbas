@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from . import models
+from . import forms
 
 
 # Create your views here.
@@ -27,7 +29,19 @@ def list_category(request, category_slug=None):
     print(products)
     return render(request, 'core/list-category.html', {'category': category, 'products': products})
 
+
 def product_info(request, slug):
     product = get_object_or_404(models.Product, slug=slug)
-    context = {'product': product}
-    return render(request, 'core/product-info.html', context)
+    reviews = models.ProductReview.objects.filter(product=product)
+    if request.method == 'POST':
+        form = forms.ProductReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.product = product
+            review.save()
+            return redirect('product-info', slug=slug)
+    context = {'product': product, 'form': forms.ProductReviewForm(), 'reviews': reviews}
+    return render(request, 'core/product-info.html', context=context)
+
+

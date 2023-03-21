@@ -12,5 +12,10 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ['id','title', 'brand', 'price',]
     prepopulated_fields = {'slug': ('title',)}
 
+
+@admin.register(models.ProductReview)
+class WishlistAdmin(admin.ModelAdmin):
+    list_display = ['id','user', 'product', 'date_added',]
+
 # admin.site.register(models.Category)
 # admin.site.register(models.Product)

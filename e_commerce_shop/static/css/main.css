@@ -574,6 +574,54 @@
     width: 4rem;
 }
 
+/* PRODCUT REVIEWS */
+.reviews-section {
+    width: 100%;
+}
+
+.reviews-section .review {
+    border: 1px solid #cacaca;
+    display: flex;
+    flex-direction: row;
+    margin: .5rem 0;
+}
+
+.reviews-section .review__author {
+    font-weight: 700;
+    width: 4rem;
+}
+
+.reviews-section .review__text {
+    text-align: left;
+    width: 60%;
+}
+
+
+
+/* PRODUCT REVIEW FORM */
+.product-review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.product-review-form textarea {
+    background-color: #ececec;
+}
+
+.product-review-form input {
+    width: 4rem;
+}
+
+.product-review-btn {
+    margin: .5rem 0;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    font-weight: 700;
+    color:#fff;
+    background-color: #3b5276;
+}
+
 /* FOOTER SECTION */
 .footer {
     width: 100%;

@@ -1,6 +1,9 @@
 from django.db import models
 from django.urls import reverse
 from django.db.models import Q
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 # Create your models here.
 class Category(models.Model):
@@ -38,3 +41,24 @@ class Product(models.Model):
     
     def get_absolute_url(self):
         return reverse('product-info', args=[self.slug])
+    
+
+class ProductReview(models.Model):
+    RATING_CHOICES = (
+        ('⭐', '⭐'),
+        ('⭐⭐', '⭐⭐'),
+        ('⭐⭐⭐', '⭐⭐⭐'),
+        ('⭐⭐⭐⭐', '⭐⭐⭐⭐'),
+        ('⭐⭐⭐⭐⭐', '⭐⭐⭐⭐⭐')
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    review = models.TextField(max_length=1500, blank=True)
+    rating = models.CharField(max_length=5, choices=RATING_CHOICES, default='')
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.review
+
+    class Meta:
+        verbose_name_plural = 'product reviews'

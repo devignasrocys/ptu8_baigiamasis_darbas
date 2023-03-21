@@ -32,6 +32,27 @@
         <button class="product-details__btn" value="{{product.id}}" id="add-button">ADD TO CART</button>
     </div>
 </section>
+{% if reviews %}
+<section class="reviews-section">
+    <h3 class="reviews-section__title">Customer reviews</h3>
+    {% for review in reviews %}
+        <div class="review">
+            <p class="review__author">{{review.user.first_name}}</p>
+            <p class="review__text">{{review.review}}</p>
+            <p class="review__rating">{{review.rating}}</p>
+        </div>
+    {% endfor %}
+</section>
+{% endif %}
+{% if user.is_authenticated %}
+<section class="product-review-section">
+    <form class="form product-review-form" method="POST" >
+        {% csrf_token %}
+        {{form}}
+        <button class="product-review-btn">Leave review</button>
+    </form>
+</section>
+{% endif %}
 
 <script>
     function addToCart() {
