@@ -9,13 +9,14 @@
             <span class="payment-success__span">Quantity</span>
             <span class="payment-success__span">Price</span>
         </li>
-  
-        <li class="payment-success__item">
-            <span class="payment-success__span">Jackie O Round</span>
-            <span class="payment-success__span">Ordered: <b>1</b></span>
-            <span class="payment-success__span">&#8364; 45.00</span>
-        </li>
 
+        {% for item in cart%}
+        <li class="payment-success__item">
+            <span class="payment-success__span">{{item.product.title}}</span>
+            <span class="payment-success__span">Ordered: <b>{{item.qty}}</b></span>
+            <span class="payment-success__span">&#8364; {{item.price}}</span>
+        </li>
+        {% endfor %}
         <li class="payment-success__item">
             <span class="payment-success__span-total"><b>Total</b></span>
             <span class="payment-success__span-total"><b>&#8364; {{cart.get_total}}</b></span>

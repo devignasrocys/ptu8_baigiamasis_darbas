@@ -561,14 +561,16 @@
 }
 
 .payment-success__span-total:first-child {
-    width: 25rem;
+    width: 23.45rem;
     border-right: 1px solid #cacaca;
     text-align: right;
     padding-right: .5rem
 }
 
 .payment-success__span-total:last-child {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 4rem;
 }
 
