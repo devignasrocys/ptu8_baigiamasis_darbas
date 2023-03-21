@@ -27,6 +27,12 @@ def categories(request):
 def list_category(request, category_slug=None):
     category = get_object_or_404(models.Category, slug=category_slug)
     products = models.Product.objects.filter(category=category)
+    query = request.GET.get('search')
+    if query:
+        products = products.filter(
+            Q(title__istartswith=query)
+        )
+        return render(request, 'core/search-page.html', {'category': category, 'all_products': products})
     return render(request, 'core/list-category.html', {'category': category, 'products': products})
 
 
