@@ -127,14 +127,13 @@
 /* CAROUSELE SECTION */
 .carousele {
     width: 100%;
-    height: 43.75rem;
+    height: 80vh;
     overflow: hidden;
 }
 
 .carousele__slide {
     width: 100%;
     height: auto;
-    
 }
 
 .slide__img {
@@ -146,7 +145,7 @@
 
 .carousele__slide h1 {
     position: absolute;
-    top: 60%;
+    top: 50%;
     left: 50%;
     color: #fff;
     transform: translate(-50%, -50%);
@@ -154,7 +153,7 @@
 
 .carousele__slide a {
     position: absolute;
-    top: 70%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -211,7 +210,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 4rem;
+    margin: 4rem;
 }
 
 .product-details__column {
@@ -502,8 +501,15 @@
     margin: .2rem 0;
 }
 
+.order-card div {
+    width: 100%;
+    height: 100%;
+}
+
 .order-card__img {
-    width: 8rem;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 /* FOOTER SECTION */

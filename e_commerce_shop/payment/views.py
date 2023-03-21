@@ -50,7 +50,7 @@ def complete_order(request):
                 models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty']) 
             cart.clear()
         order_success = True       
-        response = JsonResponse({'order_success': order_success,})
+        response = JsonResponse({'order_success': order_success, 'order_id': order.id  })
         return response
 
 def payment_success(request):

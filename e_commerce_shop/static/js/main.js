@@ -17,7 +17,7 @@ if (carousele_slides.length > 0) {
         slideIndex++;
         if (slideIndex > carousele_slides.length - 1) {slideIndex = 0}
         carousele_slides[slideIndex].style.display = "block"
-        setTimeout(carousele, 2000)
+        setTimeout(carousele, 5000)
     }
     carousele()
 }

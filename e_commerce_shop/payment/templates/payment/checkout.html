@@ -43,6 +43,7 @@
                 });
             },
             onApprove: function(data, actions) {
+                console.log('testing')
                 function checkout() {
                     
                     fetch('{% url "complete-order" %}', {
@@ -64,7 +65,7 @@
                     .then(response => response.json())
                     .then(data =>  {
                         console.log(data)
-                        window.location.replace("{% url 'payment-success' %}");
+                        window.location.replace(`{% url 'payment-success' %}`);
                     }).catch(error => {
                         window.location.replace("{% url 'payment-failed' %}");
                     })
