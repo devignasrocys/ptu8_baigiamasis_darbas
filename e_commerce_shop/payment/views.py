@@ -30,8 +30,7 @@ def complete_order(request):
             user=request.user, 
             shipping_address=shipping_address)
             for item in cart:
-                models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty'], user=request.user) 
-            cart.clear()
+                models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty'], user=request.user)
         else:
             shipping_address = models.ShippingAddress.objects.create(
                 full_name=data['name'],
@@ -48,13 +47,15 @@ def complete_order(request):
             shipping_address=shipping_address)
             for item in cart:
                 models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty']) 
-            cart.clear()
         order_success = True       
-        response = JsonResponse({'order_success': order_success, 'order_id': order.id  })
+        response = JsonResponse({'order_success': order_success,})
         return response
 
 def payment_success(request):
-    return render(request, 'payment/payment-success.html')
+    cart = Cart(request)
+    context = {'cart': cart}
+    cart.clear()
+    return render(request, 'payment/payment-success.html', context=context)
 
 def payment_failed(request):
     return render(request, 'payment/payment-failed.html')

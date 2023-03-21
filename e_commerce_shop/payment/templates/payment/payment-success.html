@@ -1,4 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Payment success</h1>
+<section class="payment-success">
+    <h1 class="payment-success__title">THANK FOR YOUR PURCHASE</h1>
+    <h3 class="payment-success__subtitle">ITEMS ORDERED</h3>
+    <ul class="payment-success__list">
+        <li class="payment-success__item">
+            <span class="payment-success__span">Item</span>
+            <span class="payment-success__span">Quantity</span>
+            <span class="payment-success__span">Price</span>
+        </li>
+  
+        <li class="payment-success__item">
+            <span class="payment-success__span">Jackie O Round</span>
+            <span class="payment-success__span">Ordered: <b>1</b></span>
+            <span class="payment-success__span">&#8364; 45.00</span>
+        </li>
+
+        <li class="payment-success__item">
+            <span class="payment-success__span-total"><b>Total</b></span>
+            <span class="payment-success__span-total"><b>&#8364; {{cart.get_total}}</b></span>
+        </li>
+    </ul>
+</section>
 {% endblock content %}
