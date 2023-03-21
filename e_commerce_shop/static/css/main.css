@@ -605,6 +605,12 @@
     align-items: center;
 }
 
+.product-review-form label {
+    margin: .5rem 0;
+    width: 100%;
+    text-align: center;
+}
+
 .product-review-form textarea {
     background-color: #ececec;
 }
