@@ -345,13 +345,19 @@
 
 /* FORMS SECTION */
 .form {
-    margin-top: 5rem;
+    margin-top: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 29.8rem;
     max-width: 100%;
+}
+
+.form__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
 }
 
 .form label {

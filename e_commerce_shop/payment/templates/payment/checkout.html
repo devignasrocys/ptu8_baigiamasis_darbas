@@ -1,23 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
-<form class="form" method="POST" onsubmit="(e) => e.preventDefault();">
+<form class="form" method="POST">
+    <h1 class="form__title">Shipping information</h1>
     {% csrf_token %}
-    <label for="full_name"><label>
+    <label for="full_name">Your full name <label>
     <input id="full-name" type="text" placeholder="Full name" value="{{shipping.full_name}}" />
 
-    <label for="email"><label>
+    <label for="email">Your email<label>
     <input id="email" type="text" name="email" placeholder="Email" value="{{shipping.email}}" />
 
-    <label for="address1"><label>
+    <label for="address1">Your address 1<label>
     <input id="address1" type="text" name="address1" placeholder="Address 1" value="{{shipping.address1}}" />
 
-    <label for="address2"><label>
+    <label for="address2">Your address 2<label>
     <input id="address2" type="text" name="address2" placeholder="Address 2" value="{{shipping.address2}}" />
 
-    <label for="state"><label>
+    <label for="state">Your state<label>
     <input id="state" type="text" name="state" placeholder="State" value="{{shipping.state}}" />
 
-    <label for="zipcode"><label>
+    <label for="zipcode">Your zip code<label>
     <input id="zipcode" type="text" name="zipcode" placeholder="Zip code" value="{{shipping.zipcode}}" />
     
     <div id="paypal-button-container"></div>
