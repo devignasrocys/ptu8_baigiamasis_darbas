@@ -51,8 +51,8 @@ class ProductReview(models.Model):
         (4, '⭐⭐⭐⭐'),
         (5, '⭐⭐⭐⭐⭐')
     )
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product_reviews')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product_reviews')
     review = models.TextField(max_length=1500, blank=True)
     rating = models.IntegerField(default=0, choices=RATING_CHOICES,)
     date_added = models.DateTimeField(auto_now_add=True)
