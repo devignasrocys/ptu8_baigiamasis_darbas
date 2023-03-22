@@ -127,8 +127,15 @@
 /* CAROUSELE SECTION */
 .carousele {
     width: 100%;
+    height: 40rem;
     overflow: hidden;
     position: relative;
+}
+
+.carousele__title {
+    font-size: 4rem;
+    width: 100%;
+    text-align: center;
 }
 
 .carousele__slide {
@@ -140,6 +147,7 @@
     display:block;
     width: 100%;
     margin: 0 auto;
+    filter: brightness(.5);
 }
 
 .carousele__slide h1 {
@@ -148,6 +156,7 @@
     left: 50%;
     color: #fff;
     transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 .carousele__slide a {
@@ -174,7 +183,10 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 100%;
+}
+
+.products-section__title {
+    margin: 2rem 0;
 }
 
 .products-section a {
@@ -733,6 +745,14 @@
     .nav__item:hover {
        background-color: #546c92; 
     } 
+
+    .carousele {
+        height: 25rem;
+    }
+
+    .carousele__title {
+        font-size: 1.5rem;
+    }
 }
 
 
@@ -773,4 +793,11 @@
         margin: .5rem 0;
     }
 
+  }
+
+  @media only screen and(max-width: 580px) {
+    .carousele {
+        height: 100%;
+        border: 1px solid red;
+    }
   }
