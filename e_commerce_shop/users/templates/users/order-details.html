@@ -4,21 +4,20 @@
 <section class="dashboard">
     <article class="dashboard__article order-details">
         <div class="column">
-            <h1>Order detail</h1>
+            <h1>Order details</h1>
             {% for order_item in order_items %}
             <div class="order-card">
-                <div>
+                <div class="order-card__img-container">
                     <img class="order-card__img" src="{{order_item.product.image1.url}}" alt="{{order_item.product.name}}"/>
                 </div>
-                <div>
+                <div class="order-card__details">
                     <p>{{order_item.product.title}}</p>
-                    <p>Quantity: {{order_item.quantity}}</p> 
                     <p>Price:	&#8364; <b>{{order_item.product.price}}</b></p>
                 </div>
             </div>
             {% endfor %}
         </div>
-        <div class="column">
+        <div class="column shipping-address">
             <h1>Shipping address</h1>
             <p>
                 <b>Delivered To: </b>
