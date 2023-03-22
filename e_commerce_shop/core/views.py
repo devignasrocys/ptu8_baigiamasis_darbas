@@ -9,15 +9,13 @@ from payment import models as payment_models
 
 # Create your views here.
 def home(request):
-    all_products = models.Product.objects.all()
-    context = {'all_products': all_products}
-    query = request.GET.get('search')
-    if query:
-        all_products = all_products.filter(
-            Q(title__istartswith=query)
-        )
-        context = {'all_products': all_products}
-        return render(request, 'core/search-page.html', context)
+    products = models.Product.objects.all()
+    top_products = []
+    for product in products:
+       if product.product_reviews.all():
+           if sum(product.product_reviews.all().values_list('rating', flat=True)) / len(product.product_reviews.all()) >= 4:
+               top_products.append(product)
+    context = {'all_products': top_products}
     return render(request, 'core/home.html', context)
 
 def categories(request):

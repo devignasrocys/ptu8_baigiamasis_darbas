@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-{% include 'core/includes/search.html' %}
 {% include 'core/includes/hero.html' %}
+<h2 class="products-section__title">Most rated prodcuts</h2>
 <section class="products-section">
     {% for product in all_products %}
     <a href="{{product.get_absolute_url}}">
-        <p>{{product.ratings}}</p>
         <article class="product-card">
             <img class="product-card__img" src="{{product.image2.url}}" alt="product image"/>
             <p class="product-card__name">{{ product.title | capfirst }}</p>
