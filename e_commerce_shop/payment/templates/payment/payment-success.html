@@ -9,8 +9,7 @@
             <span class="payment-success__span">Quantity</span>
             <span class="payment-success__span">Price</span>
         </li>
-
-        {% for item in cart%}
+        {% for item in cart %}
         <li class="payment-success__item">
             <span class="payment-success__span">{{item.product.title}}</span>
             <span class="payment-success__span">Ordered: <b>{{item.qty}}</b></span>

@@ -9,6 +9,9 @@
     <label for="email">Your email<label>
     <input id="email" type="text" name="email" placeholder="Email" value="{{shipping.email}}" />
 
+    <label for="city">Your city<label>
+    <input id="city" type="text" name="city" placeholder="City" value="{{shipping.city}}" />
+
     <label for="address1">Your address 1<label>
     <input id="address1" type="text" name="address1" placeholder="Address 1" value="{{shipping.address1}}" />
 
@@ -65,8 +68,7 @@
                     })
                     .then(response => response.json())
                     .then(data =>  {
-                        console.log(data)
-                        window.location.replace(`{% url 'payment-success' %}`);
+                        window.location.assign(`{% url 'payment-success' %}`);
                     }).catch(error => {
                         window.location.replace("{% url 'payment-failed' %}");
                     })

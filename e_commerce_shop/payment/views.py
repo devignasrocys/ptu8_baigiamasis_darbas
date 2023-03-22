@@ -48,14 +48,14 @@ def complete_order(request):
             for item in cart:
                 models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty']) 
         order_success = True       
-        response = JsonResponse({'order_success': order_success,})
+        response = JsonResponse({'order_success': order_success})
         return response
 
 def payment_success(request):
     cart = Cart(request)
     context = {'cart': cart}
     cart.clear()
-    return render(request, 'payment/payment-success.html', context=context)
+    return render(request, 'payment/payment-success.html', context)
 
 def payment_failed(request):
     return render(request, 'payment/payment-failed.html')

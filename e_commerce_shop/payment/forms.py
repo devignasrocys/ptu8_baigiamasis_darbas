@@ -7,4 +7,4 @@ User = get_user_model()
 class ShippingForm(forms.ModelForm):
     class Meta:
         model = models.ShippingAddress
-        fields = ('full_name', 'email', 'address1', 'address2', 'state', 'zipcode')
+        fields = ('full_name', 'email', 'city', 'address1', 'address2', 'state', 'zipcode')
