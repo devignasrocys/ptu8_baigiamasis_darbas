@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load static i18n %}
 {% block content %}
-<h1>Payment failed</h1>
+<section class="payment-failed">
+    <img class="payment-failed__img" src="{% static 'media/icons/failed-payment.png' %}"/>
+    <h1>Payment Failed</h1>
+    <p>Sorry, but your payment failed. Please try again.</p>
+    <a href="{% url 'checkout' %}" class="payment-failed-btn" >Try again</a>
+</section>
 {% endblock content %}
