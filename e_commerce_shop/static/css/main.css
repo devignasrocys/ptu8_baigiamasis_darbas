@@ -489,7 +489,7 @@
 .order-details {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .order-details .column {
@@ -542,6 +542,18 @@
     display: block;
     width: 100%;
     height: auto;
+}
+
+.order-card__total {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border: 1px solid #cacaca;
+    padding: 0 .5rem;
+}
+
+.order-card__total p:first-child {
+    margin-right: .5rem;
 }
 
 /* PAYMENT SUCCESS */
