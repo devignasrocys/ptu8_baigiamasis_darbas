@@ -54,17 +54,16 @@ def dashboard(request):
 @login_required
 def track_orders(request):
     all_orders = Order.objects.filter(user=request.user.id)
-    return render(request, 'users/my-orders.html', {'all_orders': all_orders})
+    context = {'all_orders': all_orders}
+    return render(request, 'users/my-orders.html', context)
 
 @login_required
 def order_details(request,pk):
     order = Order.objects.get(id=pk)
     order_items = OrderItem.objects.filter(order=order)
     order_shipping = ShippingAddress.objects.get(id=order.shipping_address.id)
-    return render(request, 'users/order-details.html', {
-        'order': order, 
-        'order_items': order_items, 
-        'shipping_address': order_shipping} )
+    context = {'order': order, 'order_items': order_items, 'shipping_address': order_shipping}
+    return render(request, 'users/order-details.html', context )
 
 @login_required
 def profile_management(request):
@@ -75,9 +74,8 @@ def profile_management(request):
             user_form.save()
             messages.info(request, 'Update success!')
             return redirect('dashboard')
-    return render(request, 'users/profile-management.html', {
-        'user_form': user_form
-    })
+    context = {'user_form': user_form}
+    return render(request, 'users/profile-management.html', context)
 
 @login_required
 def manage_shipping(request):

@@ -45,16 +45,16 @@ class Product(models.Model):
 
 class ProductReview(models.Model):
     RATING_CHOICES = (
-        ('⭐', '⭐'),
-        ('⭐⭐', '⭐⭐'),
-        ('⭐⭐⭐', '⭐⭐⭐'),
-        ('⭐⭐⭐⭐', '⭐⭐⭐⭐'),
-        ('⭐⭐⭐⭐⭐', '⭐⭐⭐⭐⭐')
+        (1, '⭐'),
+        (2, '⭐⭐'),
+        (3, '⭐⭐⭐'),
+        (4, '⭐⭐⭐⭐'),
+        (5, '⭐⭐⭐⭐⭐')
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     review = models.TextField(max_length=1500, blank=True)
-    rating = models.CharField(max_length=5, choices=RATING_CHOICES, default='')
+    rating = models.IntegerField(default=0, choices=RATING_CHOICES,)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
