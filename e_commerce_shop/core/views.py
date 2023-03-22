@@ -53,8 +53,9 @@ def product_info(request, slug):
                 review.user = request.user
                 review.product = product
                 review.save()
+                context = {'product': product, 'form': forms.ProductReviewForm(), 'reviews': reviews, 'product_already_bought': product_already_bought}
                 return redirect('product-info', slug=slug)
-    context = {'product': product, 'form': forms.ProductReviewForm(), 'reviews': reviews, 'product_already_bought': product_already_bought}
+    context = {'product': product, 'form': forms.ProductReviewForm(), 'reviews': reviews}
     return render(request, 'core/product-info.html', context)
 
 

@@ -173,13 +173,21 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     height: 100%;
+}
+
+.products-section a {
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 45rem;
+    margin: .5rem;
 }
 
 /* PRODUCT CARD SECTION */
 .product-card {
     display: block;
-    margin: 1rem;
     display: flex;
     padding: .5rem;
     flex-direction: column;
