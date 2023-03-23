@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-<h1>Logged out succesfully</h1>
-<p><a href="{% url 'login' %}">Log in again</a>.</p>
+<section class="logged-out">
+    <img src="{% static 'media/icons/check-out.png' %}" alt="Logout">
+    <h1>Logged out succesfully</h1>
+    <a href="{% url 'login' %}">Log in again</a>
+</section>
 {% endblock content %}

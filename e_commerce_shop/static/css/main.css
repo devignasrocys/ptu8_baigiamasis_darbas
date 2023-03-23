@@ -792,6 +792,28 @@
     background-color: #3b5276;
 }
 
+/* LOGGED OUT SECTION */
+.logged-out {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.logged-out img {
+    width: 10rem;
+    margin-bottom: 2rem;
+}
+
+.logged-out a {
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    background-color: #99d4a1;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
 /* FOOTER SECTION */
 .footer {
     width: 100%;
