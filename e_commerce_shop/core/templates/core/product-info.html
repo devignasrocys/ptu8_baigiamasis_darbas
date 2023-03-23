@@ -18,19 +18,18 @@
             {{product.description}}
         </p>
         <p class="product-details__price">Price &#8364; {{product.price}}</p>
+        {% if product.stock == 0 %}
+            <p class="product-details__stock">Product is out of stock</p>
+        {% else %}
         <label>Quantity
             <select class="product__select" name="quantity" id="quantity">
-                <option class="product__option" value="1">1</option>
-                <option class="product__option" value="2">2</option>
-                <option class="product__option" value="3">3</option>
-                <option class="product__option" value="4">4</option>
-                <option class="product__option" value="5">5</option>
-                <option class="product__option" value="6">6</option>
-                <option class="product__option" value="7">7</option>
-                <option class="product__option" value="8">8</option>
+                {% for value in stock_quantity %}
+                    <option class="product__option" value="{{value}}">{{value}}</option>
+                {% endfor %}
             </select>
         </label>
         <button class="product-details__btn" value="{{product.id}}" id="add-button">ADD TO CART</button>
+        {% endif %}
     </div>
 </section>
 {% if reviews %}

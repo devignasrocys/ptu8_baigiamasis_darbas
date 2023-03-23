@@ -30,6 +30,7 @@ def complete_order(request):
             user=request.user, 
             shipping_address=shipping_address)
             for item in cart:
+                item['product'].decrease_stock(item['qty'])
                 models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty'], user=request.user)
         else:
             shipping_address = models.ShippingAddress.objects.create(
@@ -46,6 +47,7 @@ def complete_order(request):
             amount_paid=cart.get_total(),
             shipping_address=shipping_address)
             for item in cart:
+                item['product'].decrease_stock(item['qty'])
                 models.OrderItem.objects.create(order=order, product=item['product'], quantity=item['qty']) 
         order_success = True       
         response = JsonResponse({'order_success': order_success})

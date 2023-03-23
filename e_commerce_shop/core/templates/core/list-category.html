@@ -9,6 +9,9 @@
             <img class="product-card__img" src="{{product.image2.url}}" alt="product image"/>
             <p clas="product-card__name">{{ product.title | capfirst }}</p>
             <p class="product-card__price">	&#8364; {{ product.price }}</p>
+            {% if product.stock == 0 %}
+                <p class="product-card__stock">Out of stock</p>
+            {% endif %}
         </article>
     </a>
     {% endfor %}

@@ -26,6 +26,7 @@ class Product(models.Model):
     title = models.CharField(max_length=250)
     brand = models.CharField(max_length=250, default='un-branded')
     description = models.TextField(max_length=1500, blank=True)
+    stock = models.IntegerField(default=0, blank=True, null=True)
     slug = models.SlugField(max_length=255)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     image1 = models.ImageField(upload_to='images/')
@@ -41,6 +42,10 @@ class Product(models.Model):
     
     def get_absolute_url(self):
         return reverse('product-info', args=[self.slug])
+    
+    def decrease_stock(self, quantity):
+        self.stock -= quantity
+        self.save()
     
 
 class ProductReview(models.Model):

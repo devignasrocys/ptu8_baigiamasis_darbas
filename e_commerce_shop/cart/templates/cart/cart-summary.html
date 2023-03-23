@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load mathfilters %}
+{% load my_filters %}
 {% load static i18n %}
 
 {% block content %}
@@ -21,14 +22,9 @@
                     <label>Qty
                         <select class="product__select" name="quantity" id="quantity{{product.id}}">
                             <option class="product__option" selected>{{item.qty}}</option>
-                            <option class="product__option" value="1">1</option>
-                            <option class="product__option" value="2">2</option>
-                            <option class="product__option" value="3">3</option>
-                            <option class="product__option" value="4">4</option>
-                            <option class="product__option" value="5">5</option>
-                            <option class="product__option" value="6">6</option>
-                            <option class="product__option" value="7">7</option>
-                            <option class="product__option" value="8">8</option>
+                            {% for i in product.stock|times %}
+                                <option class="product__option" value="{{i}}">{{i}}</option>
+                            {% endfor %}
                         </select>
                     </label>
                     <div class="product__buttons-row">
