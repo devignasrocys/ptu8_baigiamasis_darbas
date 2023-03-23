@@ -68,20 +68,9 @@
                     })
                     .then(response => response.json())
                     .then(data =>  {
-                        fetch('{% url "payment-success" %}', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRFToken': '{{ csrf_token }}'
-                            },
-                            body: JSON.stringify({
-                                order_id: data.order_id,
-                                action: 'post'
-                            })
-                        })
                         window.location.assign(`{% url 'payment-success' %}`);
                     }).catch(error => {
-                        window.location.replace("{% url 'payment-failed' %}");
+                        window.location.assign("{% url 'payment-failed' %}");
                     })
                 }
                 return actions.order.capture().then(checkout);

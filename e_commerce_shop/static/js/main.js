@@ -32,12 +32,11 @@ if (images_arr.length > 0) {
     })
 }
 
-
 // MESSAGES 
 const messages = document.querySelectorAll('.messages')
-
 setTimeout(() => {
     messages.forEach(message => {
         message.style.display = 'none'
     })
 },5000)
+ 

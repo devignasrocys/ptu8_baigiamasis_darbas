@@ -281,6 +281,23 @@
 /* CART SECTION */
 .cart-section {
     margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-section__img {
+    width: 8rem;
+    margin-bottom: 2rem;
+}
+
+.cart-section__title {
+    font-size: 2.3rem;
+    margin-bottom: 2rem;
+}
+
+.cart-section__title .red {
+    color:rgb(216, 27, 27);
 }
 
 .product {
@@ -803,7 +820,13 @@
 
     .order-details {
         flex-direction: column;
+        align-items: center;
         width: 100%;
+        padding: 0;
+    }
+
+    .order-details .column {
+        margin: 1rem 0;
     }
 
     .shipping-address {

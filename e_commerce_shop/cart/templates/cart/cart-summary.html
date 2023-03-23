@@ -40,15 +40,18 @@
     </div>
     {% endwith %}
     {% endfor %}
-    {% else %}
-        <h1>Your cart is empty</h1>
-    {% endif %}
     <div class="cart-section__row">
         <p class="cart-section__total-price">Total Price: <b>&#8364; {{cart.get_total}}</b></p>
     </div>
     <div class="cart-section__row">
         <a class="cart-section__btn" href="{% url 'checkout' %}">Check out</a>
     </div>
+    {% else %}
+        <img class="cart-section__img" src="{% static 'media/icons/empty-cart.png' %}" alt="empty cart" />
+        <h1 class="cart-section__title">Your cart is <span class="red">empty</span></h1>
+        <a class="cart-section__btn" href="{% url 'home-page' %}">Return to shop</a>
+    {% endif %}
+
 </section>
 <script>
     
