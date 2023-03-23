@@ -42,6 +42,58 @@
     background-color: #5f6b80;
 }
 
+/* BURGER MENU */
+.burger-btn {
+    width: 3.5rem;
+    height: 3rem;
+    position: relative;
+}
+
+.burger-btn__span {
+    position: absolute;
+    width: 100%;
+    height: .3rem;
+    background-color: #fff;
+    left: 0;
+    transition: all .3s ease;
+}
+
+.burger-btn__span:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: .3rem;
+    background-color: #fff;
+    left: 0;
+    top: -15px;
+    transition: all .3s ease;
+}
+
+.burger-btn__span:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: .3rem;
+    background-color: #fff;
+    left: 0;
+    top: 15px;
+    transition: all .3s ease;
+}
+
+.burger-btn__span.active {
+    background-color: transparent;
+}
+
+.burger-btn__span.active:before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.burger-btn__span.active:after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
 /* BODY SECTION */
 .body {
     font-family: 'Montserrat', sans-serif;

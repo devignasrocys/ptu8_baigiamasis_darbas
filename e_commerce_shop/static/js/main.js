@@ -2,6 +2,7 @@
 const btn = document.getElementById("menu-btn");
 const toggleMenu = () => {
     document.getElementById("navbar").classList.toggle("display");
+    document.querySelector(".burger-btn__span").classList.toggle("active")
 }
 btn.addEventListener("click", toggleMenu)
 
