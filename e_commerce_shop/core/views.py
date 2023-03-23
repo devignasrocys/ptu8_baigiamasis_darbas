@@ -40,6 +40,7 @@ def list_category(request, category_slug=None):
 def product_info(request, slug):
     product = get_object_or_404(models.Product, slug=slug)
     reviews = models.ProductReview.objects.filter(product=product)
+    context = {'product': product, 'stock_quantity': range(1, product.stock + 1), 'form': forms.ProductReviewForm(), 'reviews': reviews}
     if request.user.is_authenticated:
         products_bought_by_user = payment_models.OrderItem.objects.filter(user=request.user, product=product)
         if products_bought_by_user:
@@ -54,9 +55,8 @@ def product_info(request, slug):
                 review.product = product
                 review.save()
                 return redirect('product-info', slug=slug)
-    context = {'product': product,'stock_quantity': range(1, product.stock + 1), 'form': forms.ProductReviewForm(), 'reviews': reviews}
-    if products_bought_by_user:
-        context['product_already_bought'] = product_already_bought
+        if products_bought_by_user:
+            context['product_already_bought'] = product_already_bought
     return render(request, 'core/product-info.html', context)
 
 
