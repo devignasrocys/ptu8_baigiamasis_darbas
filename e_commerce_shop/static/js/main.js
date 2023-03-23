@@ -1,9 +1,10 @@
 // MOBILE MENU
 const btn = document.getElementById("menu-btn");
-btn.addEventListener("click", (e) => {
-    e.preventDefault();
+const toggleMenu = () => {
     document.getElementById("navbar").classList.toggle("display");
-})
+}
+btn.addEventListener("click", toggleMenu)
+
 
 // CAROUSELE
 let slideIndex =  0
