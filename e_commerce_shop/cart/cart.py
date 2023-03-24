@@ -32,7 +32,6 @@ class Cart():
         product_id = str(product_id)
         if product_id in self.cart:
             self.cart[product_id]['qty'] = int(product_quantity)
-            print(self.cart[product_id])
         self.session.modified = True
 
     def get_total(self):
@@ -46,7 +45,6 @@ class Cart():
         self.session.modified = True
     
     def __len__(self):
-        print(self.cart.values())
         sum = 0
         for item in self.cart.values():
             sum += item['qty']

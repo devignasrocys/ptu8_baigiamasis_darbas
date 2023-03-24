@@ -30,7 +30,7 @@ def list_category(request, category_slug=None):
     query = request.GET.get('search')
     if query:
         products = products.filter(
-            Q(title__istartswith=query)
+            Q(title__icontains=query)
         )
         context = {'category': category, 'all_products': products}
         return render(request, 'core/search-page.html', context)

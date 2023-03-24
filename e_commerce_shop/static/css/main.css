@@ -377,6 +377,8 @@
     flex-direction: row;
     background-color: #f4f2f2;
     border: 1px solid #cacaca;
+    width: 29rem;
+    max-width: 100%;
 }
 
 .product__img {
@@ -715,6 +717,7 @@
     display: flex;
     flex-direction: row;
     margin: .5rem 0;
+    padding: 0 .5rem;
 }
 
 .reviews-section .review__author {
@@ -724,7 +727,7 @@
 
 .reviews-section .review__text {
     text-align: left;
-    width: 60%;
+    width: 80%;
 }
 
 /* PRODUCT REVIEW FORM */

@@ -42,7 +42,6 @@ def cart_update(request):
 
     if request.method == 'POST':
         data = json.loads(request.body)
-        print(data)
         product_id = int(data['product_id'])
         product_quantity = int(data['product_quantity'])
         cart.update(product_id=product_id,product_quantity=product_quantity)
