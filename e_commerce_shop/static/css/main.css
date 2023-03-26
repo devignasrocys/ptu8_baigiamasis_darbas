@@ -251,6 +251,7 @@
 
 /* PRODUCT CARD SECTION */
 .product-card {
+    width: 363px;
     display: block;
     display: flex;
     padding: .5rem;
@@ -260,9 +261,23 @@
     position: relative;
 }
 
+.product-card.shoes {
+    height: 28rem;
+}
+
+.product-card.jeans {
+    height: 32rem;
+}
+
+
 .product-card__img {
     display: block;
     width: 100%;
+    
+}
+
+.product-card.jeans .product-card__img {
+    height: 28rem;
 }
 
 .product-card__name {

@@ -22,6 +22,6 @@
     <input name="password2" type="password"  placeholder="Repeat your password" />
 
     <button class="form__btn" type="submit">Register</button>
-    <p>Already have an account?<a class="form__link" href="">Login</a></p>
+    <p>Already have an account?<a class="form__link" href="{% url 'login' %}">Login</a></p>
 </form>
 {% endblock content %}
